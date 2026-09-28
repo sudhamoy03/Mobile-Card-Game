@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "518057624572",
+    "project_id": "mobile-card-game",
+    "storage_bucket": "mobile-card-game.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518057624572:android:6890035024649364992879",
+        "android_client_info": {
+          "package_name": "com.aistudio.mobilecardgame.mkdpq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMA5iJU-AUqJJl15pjYHfB08_GFQ0cPig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
