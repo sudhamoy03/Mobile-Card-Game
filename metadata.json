@@ -1,0 +1,6 @@
+{
+  "name": "Mobile Card Game",
+  "description": "Premium 4-player mobile card game featuring authentic card physics, local pass-and-play, online multiplayer with bot takeover, and customizable themes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
