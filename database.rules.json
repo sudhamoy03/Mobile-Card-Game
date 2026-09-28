@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "rooms": {
+      "$roomCode": {
+        ".read": "true",
+        ".write": "true",
+        "players": {
+          "$playerId": {
+            ".validate": "newData.hasChildren(['name', 'seatIndex', 'connected'])"
+          }
+        },
+        "game": {
+          "currentTurn": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    }
+  }
+}

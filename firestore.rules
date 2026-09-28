@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User Profile Rules
+    match /users/{userId} {
+      // Authenticated users can read player profiles (needed for multiplayer display)
+      allow read: if isAuthenticated();
+
+      // Only the user themselves can create or update their own profile document
+      allow create, update: if isOwner(userId) &&
+        request.resource.data.uid == request.auth.uid &&
+        request.resource.data.playerId is string &&
+        request.resource.data.normalizedPlayerId is string;
+
+      // Users cannot delete their profile directly
+      allow delete: if false;
+    }
+
+    // Unique Player ID Reservation Registry
+    match /playerIds/{normalizedPlayerId} {
+      // Anyone authenticated can read to check availability
+      allow read: if isAuthenticated();
+
+      // Only the authenticated user can claim an available ID
+      allow create: if isAuthenticated() &&
+        request.resource.data.uid == request.auth.uid;
+
+      // Only the current owner of this ID can update or release it
+      allow update, delete: if isAuthenticated() &&
+        resource.data.uid == request.auth.uid;
+    }
+
+    // Default deny all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
